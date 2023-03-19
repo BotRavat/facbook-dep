@@ -10,6 +10,7 @@ const postRoute = require("./routes/posts");
 const multer = require("multer");
 const path=require("path");
 const cors=require('cors');
+const http =require ("http");
 
 
 dotenv.config(); //to use env
@@ -60,9 +61,11 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
-app.listen(process.env.PORT || 8800, () => {
+
+const server = http.createServer(app);
+server.listen(process.env.PORT || 8800, () => {
   console.log("Backend server running");
 });
 
 
-// module.exports=app;
+module.exports=app;
